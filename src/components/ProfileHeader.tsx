@@ -103,18 +103,12 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
       .slice(0, 2);
   };
 
-  // Construct the full image URL with error handling
+  // Simplified URL handling since backend returns full Supabase URLs
   const getImageUrl = (profilePicture?: string) => {
     if (!profilePicture) return null;
     
-    // If it's already a full URL, return as is
-    if (profilePicture.startsWith('http')) {
-      return profilePicture;
-    }
-    
-    // Construct the full URL
-    const baseUrl = import.meta.env.VITE_API_URL || 'https://crowdfunding-backend-r9z5.onrender.com';
-    return `${baseUrl}${profilePicture}`;
+    // Backend should return complete Supabase URLs, so just return as-is
+    return profilePicture;
   };
 
   return (
