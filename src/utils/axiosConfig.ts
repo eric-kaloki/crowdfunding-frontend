@@ -9,9 +9,11 @@ const API_BASE_URL =
 
 // Create axios instance
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://crowdfunding-backend-r9z5.onrender.com/api',
+  baseURL:
+    import.meta.env.REACT_APP_BACKEND_URL ||
+    "https://crowdfunding-backend-r9z5.onrender.com/api",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
   withCredentials: true, // Important for CORS with credentials
   timeout: 30000, // 30 second timeout
