@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useAuth } from '@/contexts/AuthContext';
-import axios from 'axios';
+import axiosInstance from '@/utils/axiosConfig';
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { URL } from '../utils/shared';
@@ -42,12 +42,7 @@ const ClientProjects = () => {
 
     const fetchProjects = async () => {
       try {
-        const token = localStorage.getItem('token'); // Adjust according to where the token is stored
-        const response = await axios.get(`${URL}api/projects/my-projects`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.get('/projects/my-projects');
         setProjects(response.data);
       } catch (error: any) {
         toast({

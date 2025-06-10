@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import { useAuth } from '@/contexts/AuthContext'; // Import useAuth to access setUser
 import { URL } from '../utils/shared';
 import Header from '@/components/Header';
+import axiosInstance from '@/utils/axiosConfig';
+
 const OTPVerificationPage = () => {
   const { login } = useAuth(); // Add login function
   const location = useLocation();
@@ -27,13 +29,12 @@ const OTPVerificationPage = () => {
     const otpString = otp.join(''); // Convert array to string
     
     try {
-      const response = await fetch(`${URL}api/auth/verify-otp`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp: otpString }),
+      const response = await axiosInstance.post('/auth/verify-otp', {
+        email,
+        otp: otpString
       });
       
-      const data = await response.json();
+      const data = response.data;
       
       if (data.success) {
         // Check if this verification came from login flow

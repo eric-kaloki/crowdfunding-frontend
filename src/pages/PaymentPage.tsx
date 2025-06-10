@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { TopAppBar } from "@/components/TopAppBar";
 import { useToast } from "@/components/ui/use-toast";
 import { formatCurrency, formatDate, formatPhoneNumber } from "@/lib/utils";
-import axiosInstance from "@/lib/axios";
+import axiosInstance from '@/utils/axiosConfig';
 import PaymentDialog from './PaymentInterface';
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";

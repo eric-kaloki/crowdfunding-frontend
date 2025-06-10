@@ -10,7 +10,7 @@ import {
   SelectValue 
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
-import axiosInstance from '@/lib/axios';
+import axiosInstance from '@/utils/axiosConfig';
 import { formatCurrency } from '@/lib/utils';
 
 interface PaymentDialogProps {

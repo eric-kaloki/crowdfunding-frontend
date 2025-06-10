@@ -23,7 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Link } from 'react-router-dom';
 import PaymentDialog from './PaymentInterface';
-import { axiosInstance } from '@/lib/axios';
+import axiosInstance from '@/utils/axiosConfig';
 
 // Project interface to define the structure of a project
 interface Project {

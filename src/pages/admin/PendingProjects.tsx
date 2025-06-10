@@ -5,10 +5,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/contexts/AuthContext';
-import axiosInstance from '@/lib/axios';
+import axiosInstance from '@/utils/axiosConfig';
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
-import { URL } from '../../utils/shared';
 import {
   Select,
   SelectContent,
@@ -52,21 +51,7 @@ const PendingProjects = () => {
 
     const fetchProjects = async () => {
       try {
-        console.log('Fetching pending projects from:', `${URL}api/projects/pending-review`);
-        console.log('User:', user);
-        console.log('Authenticated:', isAuthenticated);
-        console.log('Request headers:', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
         const response = await axiosInstance.get('/projects/pending-review');
-        console.log('Response status:', response.status);
-        console.log('Response data:', response.data);
-        console.log('User authentication state:', {
-          isAuthenticated,
-          user,
-        });
         // Filter only pending projects
         const pendingProjects = response.data.filter((p: Project) => p.status === 'pending');
         setProjects(pendingProjects);
@@ -87,9 +72,6 @@ const PendingProjects = () => {
 
   const handleStatusChange = async (projectId: string, newStatus: string) => {
     try {
-      const token = localStorage.getItem('token'); // Retrieve the token
-      console.log('Updating project status with token:', token); // Log the token for debugging
-  
       const response = await axiosInstance.patch(`/admin/projects/${projectId}`, {
         status: newStatus
       });
