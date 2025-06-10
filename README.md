@@ -1,69 +1,361 @@
-# Welcome to your Lovable project
+# Transcends Corp - Crowdfunding Platform Frontend
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/da64ea64-d273-419e-9a00-19b4146b4e69
+Transcends Corp is a comprehensive crowdfunding platform built with React and TypeScript that enables individuals and organizations to create, manage, and support fundraising campaigns. The platform provides a modern, responsive interface for campaign management, user authentication, and secure payment processing through M-Pesa integration.
 
-## How can I edit this code?
+## 🚀 Key Features
 
-There are several ways of editing your application.
+### Authentication & User Management
+- **Multi-Role Authentication**: Support for individual users, organizations, and administrators
+- **Google OAuth Integration**: One-click sign-up and login with Google accounts
+- **Email/Password Authentication**: Traditional registration with email verification
+- **OTP Verification**: 6-digit email verification for account security
+- **Password Recovery**: Secure password reset via email links
+- **Profile Management**: Comprehensive user profiles with image upload capabilities
 
-**Use Lovable**
+*[Screenshot Space: Login page with Google OAuth button]*
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/da64ea64-d273-419e-9a00-19b4146b4e69) and start prompting.
+*[Screenshot Space: Registration form with organization/individual selection]*
 
-Changes made via Lovable will be committed automatically to this repo.
+### Campaign Management
+- **Campaign Creation**: Rich campaign creation interface with image upload
+- **Category-based Organization**: Campaigns organized by categories (Education, Healthcare, Technology, etc.)
+- **Real-time Progress Tracking**: Live funding progress with visual progress bars
+- **Campaign Discovery**: Public feed with filtering and search capabilities
+- **Campaign Details**: Detailed campaign pages with funding metrics and updates
 
-**Use your preferred IDE**
+*[Screenshot Space: Campaign creation form]*
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+*[Screenshot Space: Campaign dashboard with progress tracking]*
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Payment Integration
+- **M-Pesa Integration**: Seamless mobile money payments for Kenyan users
+- **Secure Payment Processing**: PCI-compliant payment handling
+- **Real-time Payment Updates**: Live payment status tracking
+- **Contribution Management**: Detailed contribution history and receipts
 
-Follow these steps:
+*[Screenshot Space: Payment interface with M-Pesa option]*
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### User Roles & Dashboards
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+#### Individual Users (Regular Users)
+- **Personal Dashboard**: Campaign discovery feed with social media-like interface
+- **Campaign Creation**: Ability to create personal fundraising campaigns
+- **Contribution Tracking**: History of supported campaigns
+- **Profile Management**: Personal profile with bio, location, and profile picture
 
-# Step 3: Install the necessary dependencies.
-npm i
+*[Screenshot Space: Individual user dashboard]*
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+#### Organizations
+- **Organization Registration**: Multi-step verification process with document upload
+- **Organization Dashboard**: Dual-view dashboard (discovery feed + organization campaigns)
+- **Certificate Management**: Upload and manage registration certificates
+- **Enhanced Campaign Features**: Organization-branded campaigns with verification badges
+
+*[Screenshot Space: Organization dashboard with approval status]*
+
+#### Administrators
+- **Comprehensive Admin Dashboard**: Platform-wide statistics and management tools
+- **User Management**: Manage all platform users and their permissions
+- **Organization Approval**: Review and approve organization registrations
+- **Campaign Oversight**: Review, approve, and manage all campaigns
+- **Analytics Dashboard**: Detailed platform analytics and reporting
+- **Payment Management**: Monitor and manage all platform transactions
+
+*[Screenshot Space: Admin dashboard with statistics]*
+
+### Advanced Features
+
+#### Real-time Updates
+- **WebSocket Integration**: Live updates for campaign progress and comments
+- **Real-time Notifications**: Instant updates for campaign activities
+- **Live Comment System**: Real-time commenting on campaigns
+
+#### Social Features
+- **Campaign Sharing**: Social media integration for campaign promotion
+- **Comment System**: Interactive commenting on campaigns
+- **User Interactions**: Like and support campaign features
+- **Activity Feeds**: Social media-style activity tracking
+
+*[Screenshot Space: Campaign with comments and social features]*
+
+#### Campaign Features
+- **Rich Media Support**: Image and video upload for campaigns
+- **Progress Visualization**: Interactive progress bars and funding metrics
+- **Time-based Campaigns**: Deadline management with countdown timers
+- **Campaign Updates**: Creator updates and milestone tracking
+- **Funding Goals**: Flexible funding goals with progress tracking
+
+## 🛠 Technical Stack
+
+### Frontend Technologies
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development and optimized builds
+- **Styling**: Tailwind CSS with custom component library
+- **UI Components**: Radix UI primitives with custom styling
+- **State Management**: React Context API for authentication and global state
+- **Routing**: React Router v6 with protected routes
+- **Forms**: React Hook Form with Zod validation
+- **HTTP Client**: Axios with interceptors for API communication
+
+### Key Dependencies
+```json
+{
+  "react": "^18.2.0",
+  "typescript": "^5.0.0",
+  "vite": "^4.4.0",
+  "tailwindcss": "^3.3.0",
+  "@radix-ui/react-*": "Latest",
+  "react-router-dom": "^6.15.0",
+  "react-hook-form": "^7.45.0",
+  "zod": "^3.22.0",
+  "axios": "^1.5.0"
+}
 ```
 
-**Edit a file directly in GitHub**
+## 📁 Project Structure
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```
+src/
+├── components/           # Reusable UI components
+│   ├── ui/              # Base UI components (buttons, inputs, etc.)
+│   ├── layout/          # Layout components (header, sidebar)
+│   ├── GoogleAuthButton.tsx
+│   ├── ProfileHeader.tsx
+│   ├── ProtectedRoute.tsx
+│   └── TopAppBar.tsx
+├── pages/               # Page components
+│   ├── admin/           # Admin-specific pages
+│   │   ├── AdminDashboard.tsx
+│   │   ├── AdminUsers.tsx
+│   │   ├── AdminOrganizations.tsx
+│   │   ├── PendingCampaigns.tsx
+│   │   └── AdminAnalytics.tsx
+│   ├── Index.tsx        # Landing page
+│   ├── Login.tsx        # Authentication pages
+│   ├── Signup.tsx
+│   ├── ClientDashboard.tsx
+│   ├── OrganizationDashboard.tsx
+│   ├── CreateCampaign.tsx
+│   ├── CampaignDetails.tsx
+│   └── Profile.tsx
+├── contexts/            # React contexts
+│   └── AuthContext.tsx  # Authentication state management
+├── utils/              # Utility functions
+│   ├── axiosConfig.ts   # API configuration
+│   └── shared.ts        # Shared utilities
+├── hooks/              # Custom React hooks
+│   └── useWebSocket.ts  # WebSocket integration
+└── lib/                # External library configurations
+    └── utils.ts         # Utility functions
+```
 
-**Use GitHub Codespaces**
+## 🔧 Setup & Installation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Prerequisites
+- Node.js 18+ and npm/yarn
+- Modern web browser with ES6+ support
 
-## What technologies are used for this project?
+### Installation Steps
 
-This project is built with .
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-org/transcends-frontend.git
+cd transcends-frontend
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+2. **Install dependencies**
+```bash
+npm install
+# or
+yarn install
+```
 
-## How can I deploy this project?
+3. **Environment Configuration**
+```bash
+cp .env.example .env
+```
 
-Simply open [Lovable](https://lovable.dev/projects/da64ea64-d273-419e-9a00-19b4146b4e69) and click on Share -> Publish.
+Edit `.env` with your configuration:
+```env
+VITE_API_URL=http://localhost:5000
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+NODE_ENV=development
+```
 
-## I want to use a custom domain - is that possible?
+4. **Start Development Server**
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+The application will be available at `http://localhost:8080`
+
+### Build for Production
+```bash
+npm run build
+yarn build
+```
+
+## 🎨 UI/UX Features
+
+### Design System
+- **Consistent Color Palette**: Professional green and blue theme
+- **Responsive Design**: Mobile-first approach with breakpoint optimization
+- **Accessibility**: WCAG 2.1 compliant with keyboard navigation
+- **Dark Mode Ready**: Theme system prepared for dark mode implementation
+
+### User Experience
+- **Intuitive Navigation**: Clear navigation patterns with breadcrumbs
+- **Loading States**: Skeleton loaders and progress indicators
+- **Error Handling**: User-friendly error messages and fallbacks
+- **Form Validation**: Real-time validation with helpful error messages
+
+*[Screenshot Space: Responsive design on mobile and desktop]*
+
+## 🔐 Security Features
+
+### Authentication Security
+- **JWT Token Management**: Secure token storage and automatic refresh
+- **Protected Routes**: Role-based access control for all sensitive pages
+- **XSS Protection**: Input sanitization and output encoding
+- **CSRF Protection**: Cross-site request forgery prevention
+
+### Data Security
+- **Input Validation**: Client-side and server-side validation
+- **Secure Communication**: HTTPS enforcement for all API calls
+- **File Upload Security**: Secure file upload with type validation
+
+## 📱 Mobile Responsiveness
+
+The application is fully responsive and optimized for:
+- **Mobile Devices**: 320px - 768px
+- **Tablets**: 768px - 1024px
+- **Desktop**: 1024px+
+
+*[Screenshot Space: Mobile view of campaign feed]*
+
+*[Screenshot Space: Tablet view of admin dashboard]*
+
+## 🧪 Testing
+
+### Testing Strategy
+- **Component Testing**: Unit tests for individual components
+- **Integration Testing**: API integration tests
+- **E2E Testing**: End-to-end user journey tests
+- **Accessibility Testing**: Screen reader and keyboard navigation tests
+
+## 🚀 Deployment
+
+### Deployment Options
+- **Vercel**: Recommended for easy deployment with automatic previews
+- **Netlify**: Alternative with form handling capabilities
+- **AWS S3 + CloudFront**: Enterprise-grade hosting solution
+- **Docker**: Containerized deployment option
+
+### Environment Variables for Production
+```env
+VITE_API_URL=https://api.transcends-corp.com
+VITE_GOOGLE_CLIENT_ID=production_google_client_id
+NODE_ENV=production
+```
+
+## 🔄 API Integration
+
+### API Communication
+- **RESTful APIs**: Standard REST endpoints for all operations
+- **WebSocket**: Real-time updates for campaigns and notifications
+- **File Uploads**: Multipart form data for image and document uploads
+- **Error Handling**: Comprehensive error handling with user feedback
+
+### API Endpoints Used
+```typescript
+// Authentication
+POST /api/auth/register
+POST /api/auth/login
+POST /api/auth/verify-otp
+POST /api/auth/google-auth
+
+// Campaigns
+GET /api/campaigns/public
+POST /api/campaigns
+GET /api/campaigns/:id
+POST /api/campaigns/:id/contribute
+
+// User Management
+GET /api/auth/profile/me
+PATCH /api/auth/profile/me
+POST /api/profile/upload-picture
+
+// Admin Operations
+GET /api/admin/stats
+GET /api/admin/campaigns
+PATCH /api/admin/campaigns/:id/status
+```
+
+## 🎯 Future Enhancements
+
+### Planned Features
+- **Multi-language Support**: Internationalization for multiple languages
+- **Advanced Analytics**: Detailed campaign performance analytics
+- **Social Media Integration**: Enhanced sharing and promotion features
+- **Mobile App**: React Native mobile application
+- **Advanced Payment Options**: Additional payment gateways
+- **Campaign Templates**: Pre-built campaign templates for common causes
+
+### Technical Improvements
+- **Performance Optimization**: Code splitting and lazy loading
+- **PWA Features**: Progressive web app capabilities
+- **Advanced Caching**: Service worker implementation
+- **Real-time Collaboration**: Live collaborative campaign editing
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### Authentication Problems
+```bash
+# Clear browser storage
+localStorage.clear()
+sessionStorage.clear()
+
+# Check token expiration
+console.log(localStorage.getItem('token'))
+```
+
+#### API Connection Issues
+```bash
+# Verify backend is running
+curl http://localhost:5000/api/health
+
+# Check CORS configuration
+# Ensure frontend URL is in backend CORS whitelist
+```
+
+#### Build Issues
+```bash
+# Clear node modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+
+# Clear Vite cache
+npx vite --force
+```
+
+## 📞 Support & Contact
+
+- **Documentation**: [GitHub Wiki](https://github.com/your-org/transcends-frontend/wiki)
+- **Issues**: [GitHub Issues](https://github.com/your-org/transcends-frontend/issues)
+- **Email**: [To Reach Us](transcends.corp@gmail.com)
+- **Response Time**: 24-48 hours for support requests
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+*Last updated: January 2024*
+*Version: 1.0.0*
