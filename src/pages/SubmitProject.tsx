@@ -92,7 +92,7 @@ const SubmitProject: React.FC = () => {
         formData.append('prd_document', projectData.prd_document);
       }
 
-      await axiosInstance.post(`${URL}api/projects`, formData, {
+      await axiosInstance.post('/projects', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

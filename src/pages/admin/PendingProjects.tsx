@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useAuth } from '@/contexts/AuthContext';
-import axios from 'axios';
+import axiosInstance from '@/lib/axios';
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import { URL } from '../../utils/shared';
@@ -60,11 +60,7 @@ const PendingProjects = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
-        const response = await axios.get(`${URL}api/projects/pending-review`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
+        const response = await axiosInstance.get('/projects/pending-review');
         console.log('Response status:', response.status);
         console.log('Response data:', response.data);
         console.log('User authentication state:', {
@@ -94,12 +90,8 @@ const PendingProjects = () => {
       const token = localStorage.getItem('token'); // Retrieve the token
       console.log('Updating project status with token:', token); // Log the token for debugging
   
-      const response = await axios.patch(`${URL}api/admin/projects/${projectId}`, {
+      const response = await axiosInstance.patch(`/admin/projects/${projectId}`, {
         status: newStatus
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Include the token in the headers
-        },
       });
   
       // Update local state

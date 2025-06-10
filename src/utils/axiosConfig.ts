@@ -1,17 +1,10 @@
 import axios from 'axios';
 import { toast } from '@/components/ui/use-toast';
 import {URL} from '../utils/shared';
-// Centralized API configuration
-const API_BASE_URL = 
-  process.env.NODE_ENV === 'development' 
-    ? 'https://crowdfunding-backend-r9z5.onrender.com/api' 
-    : `${URL}api`;
 
 // Create axios instance
 const axiosInstance = axios.create({
-  baseURL:
-    import.meta.env.REACT_APP_BACKEND_URL ||
-    "https://crowdfunding-backend-r9z5.onrender.com/api",
+  baseURL: URL, // Use the shared URL which already includes /api
   headers: {
     "Content-Type": "application/json",
   },

@@ -36,7 +36,7 @@ const PaymentPage = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await axiosInstance.get(`/api/projects/${id}`);
+        const response = await axiosInstance.get(`/projects/${id}`);
         setProject(response.data);
 
         // Redirect if project is not completed

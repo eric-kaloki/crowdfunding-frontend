@@ -23,6 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Link } from 'react-router-dom';
 import PaymentDialog from './PaymentInterface';
+import { axiosInstance } from '@/lib/axios';
 
 // Project interface to define the structure of a project
 interface Project {
@@ -76,7 +77,7 @@ const Projects: React.FC = () => {
           return;
         }
 
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/projects/client-projects`, {
+        const response = await axiosInstance.get('/projects/client-projects', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -106,18 +107,15 @@ const Projects: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
       
-      const response = await axios.patch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/projects/${selectedProject.id}`, 
-        {
-          ...editingProject,
-          timeline: editingProject.timeline || null
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
+      const response = await axiosInstance.patch(`/projects/${selectedProject.id}`, {
+        ...editingProject,
+        timeline: editingProject.timeline || null
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${token}`
         }
-      );
+      });
 
       // Update the project in the list
       setProjects(prevProjects => 
