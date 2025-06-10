@@ -179,7 +179,7 @@ cp .env.example .env
 
 Edit `.env` with your configuration:
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=https://crowdfunding-backend-r9z5.onrender.com
 VITE_GOOGLE_CLIENT_ID=your_google_client_id
 NODE_ENV=development
 ```
@@ -191,7 +191,7 @@ npm run dev
 yarn dev
 ```
 
-The application will be available at `http://localhost:8080`
+The application will be available at `https://www.transcends-corp.tech/`
 
 ### Build for Production
 ```bash
@@ -328,7 +328,7 @@ console.log(localStorage.getItem('token'))
 #### API Connection Issues
 ```bash
 # Verify backend is running
-curl http://localhost:5000/api/health
+curl https://crowdfunding-backend-r9z5.onrender.com/api/health
 
 # Check CORS configuration
 # Ensure frontend URL is in backend CORS whitelist

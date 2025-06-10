@@ -4,7 +4,7 @@ import {URL} from '../utils/shared';
 // Centralized API configuration
 const API_BASE_URL = 
   process.env.NODE_ENV === 'development' 
-    ? 'http://localhost:5000/api' 
+    ? 'https://crowdfunding-backend-r9z5.onrender.com/api' 
     : `${URL}api`;
 
 // Create axios instance

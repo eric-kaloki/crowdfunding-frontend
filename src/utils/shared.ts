@@ -1,1 +1,1 @@
-export const URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/' : 'http://localhost:5000';
+export const URL = process.env.NODE_ENV === 'development' ? 'https://crowdfunding-backend-r9z5.onrender.com/' : 'https://crowdfunding-backend-r9z5.onrender.com';
