@@ -150,17 +150,17 @@ const ClientDashboard = () => {
   return (
     <div className="min-h-screen bg-background">
       <TopAppBar />
-      <div className="container mx-auto p-6 max-w-4xl">
+      <div className="container mx-auto p-4 sm:p-6 max-w-4xl">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold">Discover Campaigns</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl sm:text-3xl font-bold">Discover Campaigns</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Support causes you care about and make a difference
             </p>
           </div>
           <Link to="/create-campaign">
-            <Button className="bg-green-600 hover:bg-green-700">
+            <Button className="bg-green-600 hover:bg-green-700 w-full sm:w-auto">
               <PlusCircle className="h-4 w-4 mr-2" />
               Start Campaign
             </Button>
@@ -168,14 +168,14 @@ const ClientDashboard = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
           {categories.map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
               size="sm"
               onClick={() => setSelectedCategory(category)}
-              className="whitespace-nowrap"
+              className="whitespace-nowrap text-xs sm:text-sm"
             >
               {category === 'all' ? 'All Categories' : category}
             </Button>
@@ -183,67 +183,69 @@ const ClientDashboard = () => {
         </div>
 
         {/* Campaigns Feed */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {loading ? (
             Array.from({ length: 3 }).map((_, i) => (
               <Card key={i} className="animate-pulse">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
-                      <div className="space-y-1">
-                        <div className="w-32 h-4 bg-gray-200 rounded"></div>
-                        <div className="w-20 h-3 bg-gray-200 rounded"></div>
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 rounded-full"></div>
+                      <div className="space-y-1 flex-1">
+                        <div className="w-24 sm:w-32 h-3 sm:h-4 bg-gray-200 rounded"></div>
+                        <div className="w-16 sm:w-20 h-2 sm:h-3 bg-gray-200 rounded"></div>
                       </div>
                     </div>
-                    <div className="w-full h-4 bg-gray-200 rounded"></div>
-                    <div className="w-3/4 h-4 bg-gray-200 rounded"></div>
-                    <div className="w-full h-32 bg-gray-200 rounded"></div>
+                    <div className="w-full h-3 sm:h-4 bg-gray-200 rounded"></div>
+                    <div className="w-3/4 h-3 sm:h-4 bg-gray-200 rounded"></div>
+                    <div className="w-full h-24 sm:h-32 bg-gray-200 rounded"></div>
                   </div>
                 </CardContent>
               </Card>
             ))
           ) : campaigns.length === 0 ? (
             <Card>
-              <CardContent className="p-12 text-center">
-                <Target className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-medium mb-2">No campaigns found</h3>
-                <p className="text-muted-foreground mb-4">
+              <CardContent className="p-8 sm:p-12 text-center">
+                <Target className="h-8 w-8 sm:h-12 sm:w-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-base sm:text-lg font-medium mb-2">No campaigns found</h3>
+                <p className="text-sm sm:text-base text-muted-foreground mb-4">
                   {selectedCategory === 'all' 
                     ? "Be the first to create a campaign!" 
                     : `No campaigns in ${selectedCategory} category yet.`}
                 </p>
                 <Link to="/create-campaign">
-                  <Button>Create First Campaign</Button>
+                  <Button className="w-full sm:w-auto">Create First Campaign</Button>
                 </Link>
               </CardContent>
             </Card>
           ) : (
             campaigns.map((campaign) => (
               <Card key={campaign.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   {/* Campaign Header */}
                   <div className="flex items-start gap-3 mb-4">
-                    <Avatar className="h-10 w-10">
-                      <AvatarFallback>
+                    <Avatar className="h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0">
+                      <AvatarFallback className="text-xs sm:text-sm">
                         {(campaign.profiles?.organization_name || campaign.profiles?.name || 'U').charAt(0)}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-medium">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
+                        <h3 className="font-medium text-sm sm:text-base truncate">
                           {campaign.profiles?.organization_name || campaign.profiles?.name || 'Unknown User'}
                         </h3>
-                        <Badge variant={campaign.profiles?.role === 'organization' ? 'default' : 'secondary'} className="text-xs">
-                          {campaign.profiles?.role === 'organization' ? 'Organization' : 'Individual'}
-                        </Badge>
-                        {isOwnCampaign(campaign) && (
-                          <Badge variant="outline" className="text-xs">Your Campaign</Badge>
-                        )}
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge variant={campaign.profiles?.role === 'organization' ? 'default' : 'secondary'} className="text-xs">
+                            {campaign.profiles?.role === 'organization' ? 'Organization' : 'Individual'}
+                          </Badge>
+                          {isOwnCampaign(campaign) && (
+                            <Badge variant="outline" className="text-xs">Your Campaign</Badge>
+                          )}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
                         <span>{getTimeAgo(campaign.created_at)}</span>
-                        <span>•</span>
+                        <span className="hidden sm:inline">•</span>
                         <div className="flex items-center gap-1">
                           <MapPin className="h-3 w-3" />
                           <span>{campaign.category}</span>
@@ -255,13 +257,13 @@ const ClientDashboard = () => {
                   {/* Campaign Content */}
                   <div className="space-y-4">
                     <div>
-                      <h2 className="text-xl font-bold mb-2">{campaign.title}</h2>
-                      <p className="text-gray-600 line-clamp-3">{campaign.description}</p>
+                      <h2 className="text-lg sm:text-xl font-bold mb-2 line-clamp-2">{campaign.title}</h2>
+                      <p className="text-sm sm:text-base text-gray-600 line-clamp-3">{campaign.description}</p>
                     </div>
 
                     {/* Campaign Image */}
                     {campaign.image_url && (
-                      <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                      <div className="relative h-48 sm:h-64 w-full overflow-hidden rounded-lg">
                         <img
                           src={campaign.image_url}
                           alt={campaign.title}
@@ -272,7 +274,7 @@ const ClientDashboard = () => {
 
                     {/* Progress Section */}
                     <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
+                      <div className="flex justify-between text-xs sm:text-sm">
                         <span className="font-medium text-green-600">
                           {formatCurrency(campaign.current_funding)} raised
                         </span>
@@ -293,13 +295,13 @@ const ClientDashboard = () => {
                     </div>
 
                     {/* Engagement Stats */}
-                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
-                        <Users className="h-4 w-4" />
+                        <Users className="h-3 w-3 sm:h-4 sm:w-4" />
                         <span>{campaign.contributors_count || 0} supporters</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <MessageCircle className="h-4 w-4" />
+                        <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
                         <span>{campaign.comments_count || 0} comments</span>
                       </div>
                     </div>
@@ -308,22 +310,22 @@ const ClientDashboard = () => {
                     <div className="flex items-center gap-3 pt-2">
                       {!isOwnCampaign(campaign) ? (
                         <Link to={`/campaigns/${campaign.id}`} className="flex-1">
-                          <Button className="w-full bg-green-600 hover:bg-green-700">
-                            <Heart className="h-4 w-4 mr-2" />
+                          <Button className="w-full bg-green-600 hover:bg-green-700 text-sm sm:text-base py-2 sm:py-3">
+                            <Heart className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                             Support This Cause
                           </Button>
                         </Link>
                       ) : (
                         <Link to={`/campaigns/${campaign.id}`} className="flex-1">
-                          <Button variant="outline" className="w-full">
-                            <Target className="h-4 w-4 mr-2" />
+                          <Button variant="outline" className="w-full text-sm sm:text-base py-2 sm:py-3">
+                            <Target className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                             Manage Campaign
                           </Button>
                         </Link>
                       )}
                       
-                      <Button variant="ghost" size="sm">
-                        <Share2 className="h-4 w-4" />
+                      <Button variant="ghost" size="sm" className="p-2 sm:p-3">
+                        <Share2 className="h-3 w-3 sm:h-4 sm:w-4" />
                       </Button>
                     </div>
                   </div>
@@ -335,8 +337,8 @@ const ClientDashboard = () => {
 
         {/* Load More */}
         {campaigns.length > 0 && (
-          <div className="text-center mt-8">
-            <Button variant="outline" onClick={fetchCampaigns}>
+          <div className="text-center mt-6 sm:mt-8">
+            <Button variant="outline" onClick={fetchCampaigns} className="w-full sm:w-auto">
               Load More Campaigns
             </Button>
           </div>

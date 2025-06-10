@@ -110,20 +110,22 @@ const CampaignDetails = () => {
 
   // WebSocket connection for real-time updates
   const { subscribeToCampaign, unsubscribeFromCampaign } = useWebSocket({
-    url: process.env.NODE_ENV === 'production' 
-      ? 'wss://your-domain.com' 
-      : 'ws://localhost:5000',
+    url:
+      process.env.NODE_ENV === "development"
+      ? "ws://localhost:5000"
+        : "https://crowdfunding-backend-r9z5.onrender.com/"
+        ,
     onMessage: (message) => {
       if (message.campaignId === id) {
         handleRealTimeUpdate(message);
       }
     },
     onConnect: () => {
-      console.log('Connected to real-time updates');
+      console.log("Connected to real-time updates");
       if (id) {
         subscribeToCampaign(id);
       }
-    }
+    },
   });
 
   const handleRealTimeUpdate = (message: any) => {
