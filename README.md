@@ -1,5 +1,7 @@
 # Transcends Corp - Crowdfunding Platform Frontend
 
+###Visit online at [Trancends Corp](https://www.trancends-corp.tech)
+
 ## Overview
 
 Transcends Corp is a comprehensive crowdfunding platform built with React and TypeScript that enables individuals and organizations to create, manage, and support fundraising campaigns. The platform provides a modern, responsive interface for campaign management, user authentication, and secure payment processing through M-Pesa integration.
@@ -161,8 +163,8 @@ src/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-org/transcends-frontend.git
-cd transcends-frontend
+git clone https://github.com/eric-kaloki/crowdfunding-frontend.git
+cd crowdfunding-frontend
 ```
 
 2. **Install dependencies**
@@ -192,6 +194,9 @@ yarn dev
 ```
 
 The application will be available at `https://www.transcends-corp.tech/`
+
+### Backend is available at 
+`https://github.com/eric-kaloki/crowdfunding-backend.git`
 
 ### Build for Production
 ```bash
