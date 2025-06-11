@@ -197,6 +197,23 @@ The application will be available at `https://www.transcends-corp.tech/`
 
 ### Backend is available at 
 `https://github.com/eric-kaloki/crowdfunding-backend.git`
+### Installation Steps
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/eric-kaloki/crowdfunding-backend.git
+cd crowdfunding-backend
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Environment Configuration**
+```bash
+cp .env.example .env
+```
 
 ### Build for Production
 ```bash
